@@ -1,11 +1,24 @@
 (function () {
   "use strict";
   angular
-    .module("myFirstApp", [])
-    .controller("MyFirstController", function ($scope) {
-      $scope.name = "Rishi";
-      $scope.sayHello = function () {
-        return "Hi, this is a function!!!";
+    .module("NameCalculator", [])
+    .controller("NameCalculator", function ($scope) {
+      $scope.name = "";
+      $scope.totalValue = 0;
+
+      $scope.displayNumeric = function () {
+        var totalNameValue = 0;
+        calculateNumericForString($scope.name);
+        $scope.totalValue = totalNameValue;
       };
+
+      function calculateNumericForString(string) {
+        var totalStringValue = 0;
+        for (var i = 0; i < string.length; i++) {
+          totalStringValue += string.charCodeAt(i);
+        }
+
+        return totalStringValue;
+      }
     });
 })();
